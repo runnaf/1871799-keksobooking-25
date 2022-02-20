@@ -1,4 +1,4 @@
-function rangeNumbers (fromNumber, toNumber) {
+function getRandonInteger (fromNumber, toNumber) {
   if (fromNumber >= 0 && toNumber > fromNumber) {
     if (toNumber === parseInt(toNumber, 10)) {
       return Math.floor(fromNumber + Math.random() * (toNumber + 1 - fromNumber)); // Конструкцию взяла с https://learn.javascript.ru/task/random-int-min-max;
@@ -6,17 +6,12 @@ function rangeNumbers (fromNumber, toNumber) {
     return Math.floor(fromNumber + Math.random() * (toNumber - fromNumber));
   }
 }
-rangeNumbers(1, 2);
+getRandonInteger(1, 2);
 
-function randomNumber (fromNumber, toNumber,  signsAfterComma) {
+function getRandomNumber (fromNumber, toNumber,  signsAfterComma) {
   if (fromNumber >= 0 && toNumber > fromNumber) {
-    let rangeNumber = fromNumber + Math.random() * (toNumber - fromNumber);
-
-    if (toNumber === parseInt(toNumber, 10)) {
-      rangeNumber = fromNumber + Math.random() * (toNumber + 1 - fromNumber);
-    }
-
-    return rangeNumber.toFixed(signsAfterComma);
+    return (fromNumber + Math.random() * (toNumber - fromNumber)).toFixed(signsAfterComma);
   }
 }
-randomNumber(1, 5, 10);
+
+getRandomNumber(1, 5, 10);
