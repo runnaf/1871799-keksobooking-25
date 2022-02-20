@@ -5,7 +5,6 @@ function getRandonInteger (fromNumber, toNumber) {
     } //если нет то в рандомное число не могу взять краевое значение включительно
     return Math.floor(fromNumber + Math.random() * (toNumber - fromNumber));
   }
-  alert('Вы ввели неправильное значение');
 }
 getRandonInteger(1, 2);
 
@@ -16,6 +15,5 @@ function getRandomNumber (fromNumber, toNumber,  signsAfterComma) {
     }
     return (fromNumber + Math.random() * (toNumber - fromNumber)).toFixed(signsAfterComma);
   }
-  alert('Вы ввели неправильное значение');
 }
 getRandomNumber(1, 5, 10);
