@@ -43,6 +43,7 @@ function getAuthorsArray() {
       avatar : `img/avatars/user${  randomUserNumber  }.png`,
     };
   }
+  return authors;
 }
 getAuthorsArray();
 
