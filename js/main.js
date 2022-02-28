@@ -59,6 +59,11 @@ function getLocationArray() {
   return locations;
 }
 
+function getAddressElement() {
+  const randomElement = getRandomArrayElement(getLocationArray());
+  return ((randomElement.lat).toString()).concat(', ', ((randomElement.lng).toString()));
+}
+
 const CHECKINS = [
   '12:00',
   '13:00',
@@ -102,7 +107,7 @@ const MAX_GUESTS = 10;
 
 const offer = () => ({
   title: 'Наше предложение по аренде Вам понравится',
-  address: getRandomArrayElement(getLocationArray()),
+  address: getAddressElement(),
   price: getRandomInteger(0, MAX_PRICE),
   type: getRandomArrayElement(TYPES),
   rooms: getRandomInteger(1, MAX_ROOMS),
