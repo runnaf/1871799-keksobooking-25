@@ -51,13 +51,14 @@ const LAT_NUMBER_MIN = 35.65000;
 const LAT_NUMBER_MAX = 35.70000;
 const LNG_NUMBER_MIN = 139.70000;
 const LNG_NUMBER_MAX = 139.80000;
+const NUMBER_OF_DECIMALS = 5;
 
 function getLocationArray() {
   const locations = [];
   for (let i=0; i<= SIMILAR_OBJECT_COUNT - 1; i++) {
     const location = {
-      lat: getRandomFloat(LAT_NUMBER_MIN, LAT_NUMBER_MAX, 5),
-      lng: getRandomFloat(LNG_NUMBER_MIN, LNG_NUMBER_MAX, 5),
+      lat: getRandomFloat(LAT_NUMBER_MIN, LAT_NUMBER_MAX, NUMBER_OF_DECIMALS),
+      lng: getRandomFloat(LNG_NUMBER_MIN, LNG_NUMBER_MAX, NUMBER_OF_DECIMALS),
     };
     locations.push(location);
   }
