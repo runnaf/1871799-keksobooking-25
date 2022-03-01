@@ -47,12 +47,17 @@ function getAuthorsArray() {
 }
 getAuthorsArray();
 
+const LAT_NUMBER_MIN = 35.65000;
+const LAT_NUMBER_MAX = 35.70000;
+const LNG_NUMBER_MIN = 139.70000;
+const LNG_NUMBER_MAX = 139.80000;
+
 function getLocationArray() {
   const locations = [];
   for (let i=0; i<= SIMILAR_OBJECT_COUNT - 1; i++) {
     const location = {
-      lat: getRandomFloat(35.65000, 35.70000, 5),
-      lng: getRandomFloat(139.70000, 139.80000, 5),
+      lat: getRandomFloat(LAT_NUMBER_MIN, LAT_NUMBER_MAX, 5),
+      lng: getRandomFloat(LNG_NUMBER_MIN, LNG_NUMBER_MAX, 5),
     };
     locations.push(location);
   }
@@ -119,4 +124,5 @@ const offer = () => ({
   photos: getRandomArray(PHOTOS_ARRAY, getRandomInteger (1, PHOTOS_ARRAY.length)),
 });
 
-const similarOffers = Array.from({length: SIMILAR_OBJECT_COUNT}, offer);
+const getArrayOffers = () => Array.from({length: SIMILAR_OBJECT_COUNT}, offer);
+getArrayOffers();
