@@ -1,4 +1,4 @@
-import{getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAddressElement} from './util.js';
+import{getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray} from './util.js';
 
 const SIMILAR_OBJECT_COUNT = 10;
 
@@ -76,6 +76,11 @@ const MAX_PRICE = 100000;
 const MAX_ROOMS = 5;
 
 const MAX_GUESTS = 10;
+
+const getAddressElement = (array) => {
+  const randomElement = getRandomArrayElement(array);
+  return ((randomElement.lat).toString()).concat(', ', ((randomElement.lng).toString()));
+};
 
 const offer = () => ({
   title: 'Наше предложение по аренде Вам понравится',

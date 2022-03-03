@@ -26,9 +26,4 @@ const getRandomArray = (sourceArray, numberOfArrayElements) => {
   return randomArray;
 };
 
-const getAddressElement = (array) => {
-  const randomElement = getRandomArrayElement(array);
-  return ((randomElement.lat).toString()).concat(', ', ((randomElement.lng).toString()));
-};
-
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAddressElement};
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray};
