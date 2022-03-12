@@ -26,4 +26,9 @@ const getRandomArray = (sourceArray, numberOfArrayElements) => {
   return randomArray;
 };
 
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray};
+const getAdClass = (element, classToAdd) => {
+  const className = element.classList.add(classToAdd);
+  return className;
+};
+
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAdClass};
