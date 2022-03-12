@@ -1,5 +1,4 @@
-import {getAuthorsArray, getLocationArray, getArrayOffers} from './data';
+import {getArrayElement} from './data.js';
+import {getSimilarElements} from './generating-similar-elements.js';
 
-getAuthorsArray();
-getLocationArray();
-getArrayOffers();
+getSimilarElements(getArrayElement[8]);
