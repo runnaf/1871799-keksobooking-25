@@ -26,7 +26,9 @@ const getRandomArray = (sourceArray, numberOfArrayElements) => {
   return randomArray;
 };
 
-const hideElement = (element) => {element.classList.add('hidden');};
-const addValue = (element, value) => {element.innerHTML = value;};
+const getAdClass = (element, classToAdd) => {
+  const className = element.classList.add(classToAdd);
+  return className;
+};
 
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, hideElement, addValue};
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAdClass};

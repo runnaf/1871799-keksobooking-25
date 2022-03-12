@@ -57,7 +57,7 @@ const offerElement = (_elem, id) => {
 
     offer: {
       title: 'Обьявление о сдаче жилья',
-      address: String(`${lat },${  lng}`),
+      address: `${lat },${  lng}`,
       price: getRandomInteger(0, MAX_PRICE),
       type: getRandomArrayElement(Object.keys(TYPES)),
       rooms: getRandomInteger(1, MAX_ROOMS),

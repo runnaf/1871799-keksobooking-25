@@ -1,4 +1,5 @@
 import {getArrayElement} from './data.js';
 import {getSimilarElements} from './generating-similar-elements.js';
 
-getSimilarElements(getArrayElement[8]);
+const NUMBER_ADVERD_OFFER = 7;
+getSimilarElements(getArrayElement[NUMBER_ADVERD_OFFER]);

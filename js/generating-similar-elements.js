@@ -1,6 +1,5 @@
 import {TYPES} from './data.js';
-import {hideElement, addValue} from './util.js';
-
+import {getAdClass} from './util.js';
 
 const similarOfferTemplate = document.querySelector('#card')
   .content
@@ -10,47 +9,58 @@ const photoTemplate = photosTemplate.querySelector('.popup__photo');
 
 const getSimilarElements = ({offer, author}) => {
   const offerElement = similarOfferTemplate.cloneNode(true);
+  const offerElementTitle = offerElement.querySelector('.popup__title');
+  const offerElementAdress = offerElement.querySelector('.popup__text--address');
+  const offerElementPrice = offerElement.querySelector('.popup__text--price');
+  const offerElementType= offerElement.querySelector('.popup__type');
+  const offerElementCapacity = offerElement.querySelector('.popup__text--capacity');
+  const offerElementTime = offerElement.querySelector('.popup__text--time');
+  const offerElementDescription = offerElement.querySelector('.popup__description');
+  const offerElementPhoto = offerElement.querySelector('.popup__photos');
+  const offerElementAvatar = offerElement.querySelector('.popup__avatar');
+  const hideElement = (element) => {getAdClass(element, 'hidden');};
+  const addValue = (element, value) => {element.innerHTML = value;};
 
   if (offer.title) {
-    addValue(offerElement.querySelector('.popup__title'), offer.title);
+    addValue(offerElementTitle, offer.title);
   } else {
-    hideElement(offerElement.querySelector('.popup__title'));
+    hideElement(offerElementTitle);
   }
 
   if (offer.address) {
-    addValue(offerElement.querySelector('.popup__text--address'), offer.address);
+    addValue(offerElementAdress, offer.address);
   } else {
-    hideElement(offerElement.querySelector('.popup__text--address'));
+    hideElement(offerElementAdress);
   }
 
   if (offer.price) {
-    addValue(offerElement.querySelector('.popup__text--price'), `${offer.price }₽/ночь`);
+    addValue(offerElementPrice, `${offer.price }₽/ночь`);
   } else {
-    hideElement(offerElement.querySelector('.popup__text--price'));
+    hideElement(offerElementPrice);
   }
 
   if (offer.type) {
-    addValue(offerElement.querySelector('.popup__type'), TYPES[offer.type]);
+    addValue(offerElementType, TYPES[offer.type]);
   } else {
-    hideElement(offerElement.querySelector('.popup__type'));
+    hideElement(offerElementType);
   }
 
   if (offer.rooms && offer.guests) {
-    addValue(offerElement.querySelector('.popup__text--capacity'), `${offer.rooms} комнаты для ${offer.guests} гостей`);
+    addValue(offerElementCapacity, `${offer.rooms} комнаты для ${offer.guests} гостей`);
   } else {
-    hideElement(offerElement.querySelector('.popup__text--capacity'));
+    hideElement(offerElementCapacity);
   }
 
   if (offer.checkin && offer.checkout) {
-    addValue(offerElement.querySelector('.popup__text--time'), `Заезд после${ offer.checkin }, выезд до ${ offer.checkout}`);
+    addValue(offerElementTime, `Заезд после${ offer.checkin }, выезд до ${ offer.checkout}`);
   } else {
-    hideElement(offerElement.querySelector('.popup__text--time'));
+    hideElement(offerElementTime);
   }
 
   if (offer.description) {
-    addValue(offerElement.querySelector('.popup__description'), offer.description);
+    addValue(offerElementDescription, offer.description);
   } else {
-    hideElement(offerElement.querySelector('.popup__description'));
+    hideElement(offerElementDescription);
   }
 
   if (offer.features) {
@@ -67,20 +77,20 @@ const getSimilarElements = ({offer, author}) => {
   }
 
   if(offer.photos) {
-    offerElement.querySelector('.popup__photos').innerHTML = '';
+    offerElementPhoto.innerHTML = '';
     offer.photos.forEach( (photo) => {
       const item = photoTemplate.cloneNode(true);
       item.src = photo;
-      offerElement.querySelector('.popup__photos').append(item);
+      offerElementPhoto.append(item);
     });
   } else {
-    hideElement(offerElement.querySelector('.popup__photos'));
+    hideElement(offerElementPhoto);
   }
 
   if (author.avatar) {
-    offerElement.querySelector('.popup__avatar').src = author.avatar;
+    offerElementAvatar.src = author.avatar;
   } else {
-    hideElement(offerElement.querySelector('.popup__avatar'));
+    hideElement(offerElementAvatar);
   }
 
   return document.querySelector('#map-canvas').appendChild(offerElement);
