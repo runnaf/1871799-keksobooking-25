@@ -31,4 +31,9 @@ const getAdClass = (element, classToAdd) => {
   return className;
 };
 
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAdClass};
+const getRemoveClass = (element, classToRemove) => {
+  const classRemove = element.classList.remove(classToRemove);
+  return classRemove;
+};
+
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAdClass, getRemoveClass};
