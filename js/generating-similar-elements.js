@@ -1,5 +1,5 @@
 import {TYPES} from './data.js';
-import {getAdClass} from './util.js';
+import {addClass} from './util.js';
 
 const similarOfferTemplate = document.querySelector('#card')
   .content
@@ -18,7 +18,7 @@ const getSimilarElements = ({offer, author}) => {
   const offerElementDescription = offerElement.querySelector('.popup__description');
   const offerElementPhoto = offerElement.querySelector('.popup__photos');
   const offerElementAvatar = offerElement.querySelector('.popup__avatar');
-  const hideElement = (element) => {getAdClass(element, 'hidden');};
+  const hideElement = (element) => {addClass(element, 'hidden');};
   const addValue = (element, value) => {element.innerHTML = value;};
 
   if (offer.title) {

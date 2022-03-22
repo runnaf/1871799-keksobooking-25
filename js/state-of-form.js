@@ -1,4 +1,4 @@
-import {getRemoveClass, getAdClass} from './util.js';
+import {removeClass, addClass} from './util.js';
 
 const elementClassDisabled = [
   'ad-form',
@@ -7,34 +7,34 @@ const elementClassDisabled = [
 
 function activateForms() {
   elementClassDisabled.forEach((className) => {
-    const block = document.querySelector(`.${className}`);
+    const foundElement = document.querySelector(`.${className}`);
 
-    getRemoveClass(block, `${className}--disabled`);
-    block.querySelectorAll('fieldset').forEach((element) => {
-      element.disabled = true;
+    removeClass(foundElement, `${className}--disabled`);
+    foundElement.querySelectorAll('fieldset').forEach((Element) => {
+      Element.setAttribute('disabled', true);
     });
   });
 }
 
 function deactivateForms() {
   elementClassDisabled.forEach((className) => {
-    const block = document.querySelector(`.${className}`);
+    const foundElement = document.querySelector(`.${className}`);
 
-    getAdClass(block, `${className}--disabled`);
-    block.querySelectorAll('fieldset').forEach((element) => {
-      element.disabled = false;
+    addClass(foundElement, `${className}--disabled`);
+    foundElement.querySelectorAll('fieldset').forEach((Element) => {
+      Element.setAttribute('disabled', false);
     });
   });
 }
 
-const getActivateForms = () => {
+const activateForm = () => {
   activateForms(true);
   deactivateForms(false);
 };
 
-const getDeactivateForms = () => {
+const deactivateForm = () => {
   activateForms(false);
   deactivateForms(true);
 };
 
-export {getActivateForms, getDeactivateForms};
+export {activateForm, deactivateForm};

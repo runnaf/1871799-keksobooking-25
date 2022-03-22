@@ -26,14 +26,14 @@ const getRandomArray = (sourceArray, numberOfArrayElements) => {
   return randomArray;
 };
 
-const getAdClass = (element, classToAdd) => {
+const addClass = (element, classToAdd) => {
   const className = element.classList.add(classToAdd);
   return className;
 };
 
-const getRemoveClass = (element, classToRemove) => {
+const removeClass = (element, classToRemove) => {
   const classRemove = element.classList.remove(classToRemove);
   return classRemove;
 };
 
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, getAdClass, getRemoveClass};
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, addClass, removeClass};
