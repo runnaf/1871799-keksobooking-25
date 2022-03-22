@@ -45,6 +45,9 @@ const PHOTOS_ARRAY = [
 const MAX_PRICE = 100000;
 const MAX_ROOMS = 5;
 const MAX_GUESTS = 10;
+const MIN_PRICE = 0;
+const MIN_ROOMS = 1;
+const MIN_GUESTS = 1;
 
 const offerElement = (_elem, id) => {
   const lat = getRandomFloat(LAT_NUMBER_MIN, LAT_NUMBER_MAX, NUMBER_OF_DECIMALS);
@@ -58,10 +61,10 @@ const offerElement = (_elem, id) => {
     offer: {
       title: 'Обьявление о сдаче жилья',
       address: `${lat },${  lng}`,
-      price: getRandomInteger(0, MAX_PRICE),
+      price: getRandomInteger(MIN_PRICE, MAX_PRICE),
       type: getRandomArrayElement(Object.keys(TYPES)),
-      rooms: getRandomInteger(1, MAX_ROOMS),
-      guests: getRandomInteger(1, MAX_GUESTS),
+      rooms: getRandomInteger(MIN_ROOMS, MAX_ROOMS),
+      guests: getRandomInteger(MIN_GUESTS, MAX_GUESTS),
       checkin: getRandomArrayElement(CHECKINS),
       checkout: getRandomArrayElement(CHECKOUTS),
       features: getRandomArray(FEATURES_ARRAY, getRandomInteger (1, FEATURES_ARRAY.length)),
