@@ -2,6 +2,8 @@ const form = document.querySelector('.ad-form');
 const MIN_VALUE_TITLE = 30;
 const MAX_VALUE_TITLE = 100;
 const MAX_VALUE_PRICE = 100000;
+const timeIn = form.querySelector('#timein');
+const timeOut = form.querySelector('#timeout');
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
   errorTextParent: 'ad-form__element',
@@ -80,4 +82,12 @@ pristine.addValidator(numberOfCapacityField, validateRooms, getRoomsErrorMessage
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
+});
+
+timeIn.addEventListener('change', () => {
+  timeOut.value = timeIn.value;
+});
+
+timeOut.addEventListener('change', () => {
+  timeIn.value = timeOut.value;
 });
