@@ -11,7 +11,7 @@ function activateForms() {
 
     removeClass(foundElement, `${className}--disabled`);
     foundElement.querySelectorAll('fieldset').forEach((Element) => {
-      Element.setAttribute('disabled', true);
+      Element.removeAttribute('disabled');
     });
   });
 }
@@ -27,14 +27,14 @@ function deactivateForms() {
   });
 }
 
-const activateForm = () => {
-  activateForms(true);
-  deactivateForms(false);
-};
+// const activateForm = () => {
+//   activateForms(true);
+//   deactivateForms(false);
+// };
 
-const deactivateForm = () => {
-  activateForms(false);
-  deactivateForms(true);
-};
+// const deactivateForm = () => {
+//   activateForms(false);
+//   deactivateForms(true);
+// };
 
-export {activateForm, deactivateForm};
+export {activateForms, deactivateForms};
