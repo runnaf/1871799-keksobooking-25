@@ -93,7 +93,7 @@ const getSimilarElements = ({offer, author}) => {
     hideElement(offerElementAvatar);
   }
 
-  return document.querySelector('#map-canvas').appendChild(offerElement);
+  return offerElement;
 };
 
 export {getSimilarElements};

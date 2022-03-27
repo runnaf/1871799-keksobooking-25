@@ -5,18 +5,18 @@ const elementClassDisabled = [
   'map__filters',
 ];
 
-function activateForms() {
+function activateForm() {
   elementClassDisabled.forEach((className) => {
     const foundElement = document.querySelector(`.${className}`);
 
     removeClass(foundElement, `${className}--disabled`);
     foundElement.querySelectorAll('fieldset').forEach((Element) => {
-      Element.setAttribute('disabled', true);
+      Element.removeAttribute('disabled');
     });
   });
 }
 
-function deactivateForms() {
+function deactivateForm() {
   elementClassDisabled.forEach((className) => {
     const foundElement = document.querySelector(`.${className}`);
 
@@ -26,15 +26,5 @@ function deactivateForms() {
     });
   });
 }
-
-const activateForm = () => {
-  activateForms(true);
-  deactivateForms(false);
-};
-
-const deactivateForm = () => {
-  activateForms(false);
-  deactivateForms(true);
-};
 
 export {activateForm, deactivateForm};
