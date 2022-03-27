@@ -5,7 +5,7 @@ const elementClassDisabled = [
   'map__filters',
 ];
 
-function activateForms() {
+function activateForm() {
   elementClassDisabled.forEach((className) => {
     const foundElement = document.querySelector(`.${className}`);
 
@@ -16,7 +16,7 @@ function activateForms() {
   });
 }
 
-function deactivateForms() {
+function deactivateForm() {
   elementClassDisabled.forEach((className) => {
     const foundElement = document.querySelector(`.${className}`);
 
@@ -27,14 +27,4 @@ function deactivateForms() {
   });
 }
 
-// const activateForm = () => {
-//   activateForms(true);
-//   deactivateForms(false);
-// };
-
-// const deactivateForm = () => {
-//   activateForms(false);
-//   deactivateForms(true);
-// };
-
-export {activateForms, deactivateForms};
+export {activateForm, deactivateForm};

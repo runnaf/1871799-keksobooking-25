@@ -1,11 +1,11 @@
 import {getSimilarElements} from './generating-similar-elements.js';
-import {activateForms} from './state-of-form.js';
+import {activateForm} from './state-of-form.js';
 import {getArrayElement} from './data.js';
 
 const FLOAT_ADDRESS = 5;
 const map = L.map('map-canvas')
   .on('load', () => {
-    activateForms();
+    activateForm();
   })
   .setView({
     lat: 35.681729,
@@ -68,5 +68,3 @@ addressOfMainPinMarker.value = (`${mainPinMarker._latlng.lat  },${  mainPinMarke
 mainPinMarker.on('moveend', (evt) => {
   addressOfMainPinMarker.value = (`${(evt.target.getLatLng().lat).toFixed(FLOAT_ADDRESS)}, ${(evt.target.getLatLng().lng).toFixed(FLOAT_ADDRESS)}`);
 });
-
-// mainPinMarker.remove();
