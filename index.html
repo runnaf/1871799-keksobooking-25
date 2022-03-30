@@ -125,7 +125,7 @@
         </fieldset>
         <fieldset class="ad-form__element" disabled>
           <label class="ad-form__label" for="room_number">Количество комнат</label>
-          <select id="room_number" name="rooms">
+          <select id="room_number" name="rooms" class="form__item">
             <option value="1" selected>1 комната</option>
             <option value="2">2 комнаты</option>
             <option value="3">3 комнаты</option>
@@ -134,7 +134,7 @@
         </fieldset>
         <fieldset class="ad-form__element" disabled>
           <label class="ad-form__label" for="capacity">Количество мест</label>
-          <select id="capacity" name="capacity">
+          <select id="capacity" name="capacity" class="form__item">
             <option value="3">для 3 гостей</option>
             <option value="2">для 2 гостей</option>
             <option value="1" selected>для 1 гостя</option>
@@ -220,14 +220,14 @@
 
   <!-- Сообщение об успешном создании объявления -->
   <template id="success">
-    <div class="success">
+    <div class="message success">
       <p class="success__message">Ваше объявление<br>успешно размещено!</p>
     </div>
   </template>
 
   <!-- Сообщение об ошибке создания объявления -->
   <template id="error">
-    <div class="error">
+    <div class="message error">
       <p class="error__message">Ошибка размещения объявления</p>
       <button type="button" class="error__button">Попробовать снова</button>
     </div>

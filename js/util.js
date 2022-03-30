@@ -36,4 +36,6 @@ const removeClass = (element, classToRemove) => {
   return classRemove;
 };
 
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, addClass, removeClass};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, addClass, removeClass, isEscapeKey};
