@@ -1,25 +1,35 @@
 import {mainPinMarker, LAT_TOKIO, LNG_TOKIO} from './map.js';
+const TITLE_VALUE_DEFAULT = '';
+const ADDRESS_VALUE_DEFAUL = `${mainPinMarker.getLatLng().lat }, ${  mainPinMarker.getLatLng().lng}`;
+const TYPE_VALUE_DEFAULT = 'flat';
+const PRICE_VALUE_DEFAULT = '5000';
+const TIMEIN_VALUE_DEFAULT = '12:00';
+const TIMEOUT_VALUE_DEFAULT = '12:00';
+const ROOM_NUMBER_VALUE_DEFAULT = '1';
+const CAPACITY_VALUE_DEFAULT = '1';
+
+
 const inputsValue = {
-  'title' : '',
-  'address' : `${mainPinMarker.getLatLng().lat }, ${  mainPinMarker.getLatLng().lng}`,
-  'type' : 'flat',
-  'price' : '5000',
-  'timein' : '12:00',
-  'timeout' : '12:00',
-  'room_number' : '1',
-  'capacity' : '1'
+  'title' : TITLE_VALUE_DEFAULT,
+  'address' : ADDRESS_VALUE_DEFAUL,
+  'type' : TYPE_VALUE_DEFAULT,
+  'price' : PRICE_VALUE_DEFAULT,
+  'timein' : TIMEIN_VALUE_DEFAULT,
+  'timeout' : TIMEOUT_VALUE_DEFAULT,
+  'room_number' : ROOM_NUMBER_VALUE_DEFAULT,
+  'capacity' : CAPACITY_VALUE_DEFAULT,
 };
 
-const form = document.querySelector('.ad-form');
-const inputs = form.querySelectorAll('input');
-const selects = form.querySelectorAll('select');
+const formElement = document.querySelector('.ad-form');
+const inputElements = formElement.querySelectorAll('input');
+const selectElements = formElement.querySelectorAll('select');
 
 const clearForm = () => {
   document.querySelectorAll('.leaflet-popup-pane').forEach((item) => {item.innerHTML = '';});
   mainPinMarker.setLatLng([LAT_TOKIO, LNG_TOKIO]);
-  form.querySelector('textarea').value = '';
-  inputs.forEach(((input) => {
-    if (!input.matches('input[type="file"]')) {
+  formElement.querySelector('textarea').value = '';
+  inputElements.forEach(((input) => {
+    if (!input.matches('.ad-form__input-picture')) {
       input.value = inputsValue[input.id];
       input.checked = false;
     }
@@ -28,7 +38,7 @@ const clearForm = () => {
     }
   }));
 
-  selects.forEach((select) => {
+  selectElements.forEach((select) => {
     select.value = inputsValue[select.id];
   });
 };

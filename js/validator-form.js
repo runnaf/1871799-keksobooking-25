@@ -1,11 +1,11 @@
 const MIN_VALUE_TITLE = 30;
 const MAX_VALUE_TITLE = 100;
 const MAX_VALUE_PRICE = 100000;
-const form = document.querySelector('.ad-form');
-const timeIn = form.querySelector('#timein');
-const timeOut = form.querySelector('#timeout');
-const titleField = form.querySelector('#title');
-const priceField = form.querySelector('#price');
+const formElement = document.querySelector('.ad-form');
+const timeInElement = formElement.querySelector('#timein');
+const timeOutElement = formElement.querySelector('#timeout');
+const titleFieldElement = formElement.querySelector('#title');
+const priceFieldElement = formElement.querySelector('#price');
 const minPrice = {
   'bungalow': 0,
   'flat': 1000,
@@ -13,8 +13,8 @@ const minPrice = {
   'house': 5000,
   'palace': 10000,
 };
-const numberOfRoomsField = form.querySelector('[name="rooms"]');
-const numberOfCapacityField = form.querySelector('[name="capacity"]');
+const numberOfRoomsField = formElement.querySelector('[name="rooms"]');
+const numberOfCapacityField = formElement.querySelector('[name="capacity"]');
 const roomsOption = {
   '1': ['1'],
   '2': ['2', '1'],
@@ -31,13 +31,13 @@ function getTitleErrorMessage () {
 }
 
 function validatePrice (price) {
-  const typeOfHouseField = form.querySelector('[name="type"]');
+  const typeOfHouseField = formElement.querySelector('[name="type"]');
   return price <= MAX_VALUE_PRICE && price >= minPrice[typeOfHouseField.value];
 }
 
 function getPriceErrorMessage (price) {
   if (price < MAX_VALUE_PRICE) {
-    const typeOfHouseField = form.querySelector('[name="type"]');
+    const typeOfHouseField = formElement.querySelector('[name="type"]');
 
     return `Минимальная цена за ночь должна быть больше ${minPrice[typeOfHouseField.value]}`;
   } else {
@@ -56,19 +56,19 @@ function getRoomsErrorMessage () {
 }
 
 function validatorForm () {
-  const pristine = new Pristine(form, {
+  const pristine = new Pristine(formElement, {
     classTo: 'ad-form__element',
     errorTextParent: 'ad-form__element',
     errorTextClass: 'ad-form__error-text',
     errorTextTag: 'div',
   });
 
-  pristine.addValidator(titleField, validateTitle, getTitleErrorMessage);
-  pristine.addValidator(priceField, validatePrice, getPriceErrorMessage);
-  form.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeOfHousChange));
+  pristine.addValidator(titleFieldElement, validateTitle, getTitleErrorMessage);
+  pristine.addValidator(priceFieldElement, validatePrice, getPriceErrorMessage);
+  formElement.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeOfHousChange));
   function onTypeOfHousChange () {
-    priceField.placeholder = minPrice[this.value];
-    pristine.validate(priceField);
+    priceFieldElement.placeholder = minPrice[this.value];
+    pristine.validate(priceFieldElement);
   }
   pristine.addValidator(numberOfRoomsField, validateRooms, getRoomsErrorMessage);
   pristine.addValidator(numberOfCapacityField, validateRooms, getRoomsErrorMessage);
@@ -76,12 +76,12 @@ function validatorForm () {
   return isValid;
 }
 
-timeIn.addEventListener('change', () => {
-  timeOut.value = timeIn.value;
+timeInElement.addEventListener('change', () => {
+  timeOutElement.value = timeInElement.value;
 });
 
-timeOut.addEventListener('change', () => {
-  timeIn.value = timeOut.value;
+timeOutElement.addEventListener('change', () => {
+  timeInElement.value = timeOutElement.value;
 });
 
 export {validatorForm};

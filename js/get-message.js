@@ -1,13 +1,21 @@
 import {isEscapeKey} from './util.js';
 
+const getErrorMessage = () => {
+  const messageError = document.createElement('div');
+  messageError.classList.add('error-network');
+  messageError.textContent = 'Ошибка сети. Попробуйте еще раз';
+  document.body.appendChild(messageError);
+  setTimeout(() => {
+    messageError.remove();
+  }, 3000);
+};
+
 const addEventHandlers = () => {
   const message = document.querySelector('.message');
 
   message.addEventListener('click', () => {
     message.remove();
   });
-
-
 };
 
 const addEventKeydown = () => {
@@ -32,5 +40,5 @@ function addMessage (message) {
   document.body.appendChild(message);
 }
 
-export {messages, addMessage, addEventHandlers, addEventKeydown};
+export {messages, addMessage, addEventHandlers, addEventKeydown, getErrorMessage};
 
