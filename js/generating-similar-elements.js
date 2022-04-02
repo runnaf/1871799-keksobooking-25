@@ -7,7 +7,7 @@ const similarOfferTemplate = document.querySelector('#card')
 const photosTemplate = similarOfferTemplate.querySelector('.popup__photos');
 const photoTemplate = photosTemplate.querySelector('.popup__photo');
 
-const getSimilarElements = ({offer, author}) => {
+const getSimilarElements = ({author, offer}) => {
   const offerElement = similarOfferTemplate.cloneNode(true);
   const offerElementTitle = offerElement.querySelector('.popup__title');
   const offerElementAdress = offerElement.querySelector('.popup__text--address');

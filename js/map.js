@@ -1,15 +1,16 @@
 import {getSimilarElements} from './generating-similar-elements.js';
 import {activateForm} from './state-of-form.js';
-import {getArrayElement} from './data.js';
 
 const FLOAT_ADDRESS = 5;
+const LAT_TOKIO = 35.68173;
+const LNG_TOKIO = 139.75393;
 const map = L.map('map-canvas')
   .on('load', () => {
     activateForm();
   })
   .setView({
-    lat: 35.681729,
-    lng: 139.753927,
+    lat: LAT_TOKIO,
+    lng: LNG_TOKIO,
   }, 13);
 
 L.tileLayer(
@@ -26,18 +27,20 @@ const icon = L.icon({
 });
 
 
-getArrayElement.forEach((element) => {
-  const marker = L.marker(
-    element.location,
-    {
-      icon,
-    },
-  );
+const renderSimilarPopap = (offerElements) => {
+  offerElements.forEach((element) => {
+    const marker = L.marker(
+      element.location,
+      {
+        icon,
+      },
+    );
 
-  marker
-    .addTo(map)
-    .bindPopup(getSimilarElements(element));
-});
+    marker
+      .addTo(map)
+      .bindPopup(getSimilarElements(element));
+  });
+};
 
 const markerGroup = L.layerGroup().addTo(map);
 
@@ -51,8 +54,8 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: 35.68173,
-    lng: 139.75393,
+    lat: LAT_TOKIO,
+    lng: LNG_TOKIO,
   },
   {
     draggable: true,
@@ -68,3 +71,5 @@ addressOfMainPinMarker.value = (`${mainPinMarker._latlng.lat  },${  mainPinMarke
 mainPinMarker.on('moveend', (evt) => {
   addressOfMainPinMarker.value = (`${(evt.target.getLatLng().lat).toFixed(FLOAT_ADDRESS)}, ${(evt.target.getLatLng().lng).toFixed(FLOAT_ADDRESS)}`);
 });
+
+export {renderSimilarPopap, mainPinMarker, LAT_TOKIO, LNG_TOKIO};

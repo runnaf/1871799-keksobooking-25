@@ -1036,6 +1036,14 @@ fieldset {
   opacity: 0.6;
 }
 
+.error-network {
+  width: 50%;
+  height: 150px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #ff5635;
+}
+
 .visually-hidden {
   position: absolute;
 

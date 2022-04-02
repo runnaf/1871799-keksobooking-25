@@ -1,6 +1,5 @@
 import{getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray} from './util.js';
 
-const SIMILAR_OBJECT_COUNT = 10;
 const LAT_NUMBER_MIN = 35.65000;
 const LAT_NUMBER_MAX = 35.70000;
 const LNG_NUMBER_MIN = 139.70000;
@@ -79,6 +78,6 @@ const offerElement = (_elem, id) => {
   };
 };
 
-const getArrayElement = Array.from({length: SIMILAR_OBJECT_COUNT}, offerElement);
+const getArrayElement = Array.from(offerElement);
 
 export {getArrayElement, TYPES};
