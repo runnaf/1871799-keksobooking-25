@@ -2,8 +2,10 @@ import{debounce} from './util.js';
 import {renderSimilarPopap, setTypeClick, setRoomsClick, setGuestsClick, setFeaturesClick, setPriceClick} from './map.js';
 import {getErrorMessage} from './get-message.js';
 
+const URL_DATA = 'https://25.javascript.pages.academy/keksobooking/data';
+
 const getData = () => {
-  fetch('https://25.javascript.pages.academy/keksobooking/data')
+  fetch(URL_DATA)
     .then((response) => response.json())
     .then((offerElements) => {
       renderSimilarPopap(offerElements);
