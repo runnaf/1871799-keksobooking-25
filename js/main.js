@@ -6,31 +6,26 @@ import { setUserFormSubmit } from './submiting-form.js';
 import './reset-form.js';
 import {getErrorMessage} from './get-message.js';
 import {debounce} from './util.js';
-const RERENDER_DELAY = 500;
+
 
 fetch('https://25.javascript.pages.academy/keksobooking/data')
   .then((response) => response.json())
   .then((offerElements) => {
     renderSimilarPopap(offerElements);
     setTypeClick(debounce(
-      () => renderSimilarPopap(offerElements),
-      RERENDER_DELAY,
+      () => renderSimilarPopap(offerElements)
     ));
     setRoomsClick(debounce(
-      () => renderSimilarPopap(offerElements),
-      RERENDER_DELAY,
+      () => renderSimilarPopap(offerElements)
     ));
     setGuestsClick(debounce(
-      () => renderSimilarPopap(offerElements),
-      RERENDER_DELAY,
+      () => renderSimilarPopap(offerElements)
     ));
     setFeaturesClick(debounce(
-      () => renderSimilarPopap(offerElements),
-      RERENDER_DELAY,
+      () => renderSimilarPopap(offerElements)
     ));
     setPriceClick(debounce(
-      () => renderSimilarPopap(offerElements),
-      RERENDER_DELAY,
+      () => renderSimilarPopap(offerElements)
     ));
   })
   .catch(() => getErrorMessage()
