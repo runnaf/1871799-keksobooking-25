@@ -5,27 +5,33 @@ import {renderSimilarPopap, setTypeClick, setRoomsClick, setGuestsClick, setFeat
 import { setUserFormSubmit } from './submiting-form.js';
 import './reset-form.js';
 import {getErrorMessage} from './get-message.js';
-
+import {debounce} from './util.js';
+const RERENDER_DELAY = 500;
 
 fetch('https://25.javascript.pages.academy/keksobooking/data')
   .then((response) => response.json())
   .then((offerElements) => {
     renderSimilarPopap(offerElements);
-    setTypeClick(() => {
-      renderSimilarPopap(offerElements);
-    });
-    setRoomsClick(() => {
-      renderSimilarPopap(offerElements);
-    });
-    setGuestsClick(() => {
-      renderSimilarPopap(offerElements);
-    });
-    setFeaturesClick(() => {
-      renderSimilarPopap(offerElements);
-    });
-    setPriceClick(() => {
-      renderSimilarPopap(offerElements);
-    });
+    setTypeClick(debounce(
+      () => renderSimilarPopap(offerElements),
+      RERENDER_DELAY,
+    ));
+    setRoomsClick(debounce(
+      () => renderSimilarPopap(offerElements),
+      RERENDER_DELAY,
+    ));
+    setGuestsClick(debounce(
+      () => renderSimilarPopap(offerElements),
+      RERENDER_DELAY,
+    ));
+    setFeaturesClick(debounce(
+      () => renderSimilarPopap(offerElements),
+      RERENDER_DELAY,
+    ));
+    setPriceClick(debounce(
+      () => renderSimilarPopap(offerElements),
+      RERENDER_DELAY,
+    ));
   })
   .catch(() => getErrorMessage()
   );
