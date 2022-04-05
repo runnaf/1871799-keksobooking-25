@@ -1,5 +1,6 @@
 import {mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, removePopup} from './map.js';
 import {getInitialValueSlider} from './get-slider-element.js';
+import {getData} from './data.js';
 
 const TITLE_VALUE_DEFAULT = '';
 const ADDRESS_VALUE_DEFAUL = `${mainPinMarker.getLatLng().lat }, ${  mainPinMarker.getLatLng().lng}`;
@@ -10,7 +11,7 @@ const TIMEOUT_VALUE_DEFAULT = '12:00';
 const ROOM_NUMBER_VALUE_DEFAULT = '1';
 const CAPACITY_VALUE_DEFAULT = '1';
 const DEFAULT__SRC = 'img/muffin-grey.svg';
-const FILTER_VALUE = 'any'
+const FILTER_VALUE = 'any';
 
 const inputsValue = {
   'title' : TITLE_VALUE_DEFAULT,
@@ -59,5 +60,6 @@ const clearForm = () => {
   document.querySelectorAll('.map__checkbox').forEach((feature) => {
     feature.checked = false;
   });
+  getData();
 };
 export {clearForm};

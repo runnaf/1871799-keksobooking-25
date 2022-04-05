@@ -1,4 +1,6 @@
-import{getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray} from './util.js';
+import{getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, debounce} from './util.js';
+import {renderSimilarPopap, setTypeClick, setRoomsClick, setGuestsClick, setFeaturesClick, setPriceClick} from './map.js';
+import {getErrorMessage} from './get-message.js';
 
 const LAT_NUMBER_MIN = 35.65000;
 const LAT_NUMBER_MAX = 35.70000;
@@ -80,4 +82,29 @@ const offerElement = (_elem, id) => {
 
 const getArrayElement = Array.from(offerElement);
 
-export {getArrayElement, TYPES};
+const getData = () => {
+  fetch('https://25.javascript.pages.academy/keksobooking/data')
+    .then((response) => response.json())
+    .then((offerElements) => {
+      renderSimilarPopap(offerElements);
+      setTypeClick(debounce(
+        () => renderSimilarPopap(offerElements)
+      ));
+      setRoomsClick(debounce(
+        () => renderSimilarPopap(offerElements)
+      ));
+      setGuestsClick(debounce(
+        () => renderSimilarPopap(offerElements)
+      ));
+      setFeaturesClick(debounce(
+        () => renderSimilarPopap(offerElements)
+      ));
+      setPriceClick(debounce(
+        () => renderSimilarPopap(offerElements)
+      ));
+    })
+    .catch(() => getErrorMessage()
+    );
+};
+
+export {getArrayElement, TYPES, getData};
