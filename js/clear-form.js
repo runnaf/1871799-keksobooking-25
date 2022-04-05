@@ -1,4 +1,4 @@
-import {mainPinMarker, LAT_TOKIO, LNG_TOKIO} from './map.js';
+import {mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, removePopup} from './map.js';
 import {getInitialValueSlider} from './get-slider-element.js';
 
 const TITLE_VALUE_DEFAULT = '';
@@ -26,8 +26,13 @@ const formElement = document.querySelector('.ad-form');
 const inputElements = formElement.querySelectorAll('input');
 const selectElements = formElement.querySelectorAll('select');
 
+
 const clearForm = () => {
-  document.querySelectorAll('.leaflet-popup-pane').forEach((item) => {item.innerHTML = '';});
+  removePopup();
+  map.setView({
+    lat: LAT_TOKIO,
+    lng: LNG_TOKIO,
+  }, 13);
   mainPinMarker.setLatLng([LAT_TOKIO, LNG_TOKIO]);
   formElement.querySelector('textarea').value = '';
   getInitialValueSlider();
