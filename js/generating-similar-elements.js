@@ -1,5 +1,12 @@
-import {TYPES} from './data.js';
 import {addClass} from './util.js';
+
+const TYPES = {
+  'palace': 'Дворец',
+  'flat': 'Квартира',
+  'house': 'Дом',
+  'bungalow': 'Бунгало',
+  'hotel': 'Отель',
+};
 
 const similarOfferTemplate = document.querySelector('#card')
   .content
