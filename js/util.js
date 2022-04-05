@@ -44,6 +44,6 @@ const debounce = (callback, timeoutDelay) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, addClass, removeClass, isEscapeKey, debounce};
