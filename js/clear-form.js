@@ -9,7 +9,7 @@ const TIMEIN_VALUE_DEFAULT = '12:00';
 const TIMEOUT_VALUE_DEFAULT = '12:00';
 const ROOM_NUMBER_VALUE_DEFAULT = '1';
 const CAPACITY_VALUE_DEFAULT = '1';
-
+const DEFAULT__SRC = 'img/muffin-grey.svg';
 
 const inputsValue = {
   'title' : TITLE_VALUE_DEFAULT,
@@ -42,6 +42,8 @@ const clearForm = () => {
       input.checked = false;
     }
     else {
+      document.querySelector('.ad-form__photo').innerHTML = '';
+      document.querySelector('.ad-form-header__img').src = DEFAULT__SRC;
       input.src = '';
     }
   }));

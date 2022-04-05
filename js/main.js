@@ -5,6 +5,8 @@ import {renderSimilarPopap, setTypeClick, setRoomsClick, setGuestsClick, setFeat
 import { setUserFormSubmit } from './submiting-form.js';
 import './reset-form.js';
 import {getErrorMessage} from './get-message.js';
+import './avatar.js';
+import './photos-of-housing.js';
 
 
 fetch('https://25.javascript.pages.academy/keksobooking/data')
