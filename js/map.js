@@ -5,6 +5,7 @@ const FLOAT_ADDRESS = 5;
 const LAT_TOKIO = 35.68173;
 const LNG_TOKIO = 139.75393;
 const SIMILAR_ADS = 10;
+const ZOOM = 13;
 const housingType = document.querySelector('[name="housing-type"]');
 const housingPrice = document.querySelector('[name="housing-price"]');
 const housingRooms = document.querySelector('[name="housing-rooms"]');
@@ -32,7 +33,7 @@ const map = L.map('map-canvas')
   .setView({
     lat: LAT_TOKIO,
     lng: LNG_TOKIO,
-  }, 13);
+  }, ZOOM);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',

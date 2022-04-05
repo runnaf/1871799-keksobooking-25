@@ -1,3 +1,4 @@
+const RERENDER_DELAY = 500;
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -36,6 +37,14 @@ const removeClass = (element, classToRemove) => {
   return classRemove;
 };
 
+const debounce = (callback, timeoutDelay = RERENDER_DELAY) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, addClass, removeClass, isEscapeKey};
+export {getRandomInteger, getRandomFloat, getRandomArrayElement, getRandomArray, addClass, removeClass, isEscapeKey, debounce};
