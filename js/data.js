@@ -1,8 +1,16 @@
-import{debounce} from './util.js';
 import {renderSimilarPopap, setTypeClick, setRoomsClick, setGuestsClick, setFeaturesClick, setPriceClick} from './map.js';
 import {getErrorMessage} from './get-message.js';
 
 const URL_DATA = 'https://25.javascript.pages.academy/keksobooking/data';
+const RERENDER_DELAY = 500;
+
+const debounce = (callback, timeoutDelay = RERENDER_DELAY) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
 
 const getData = () => {
   fetch(URL_DATA)
