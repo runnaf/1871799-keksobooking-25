@@ -10,4 +10,12 @@ const removeClass = (element, classToRemove) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {addClass, removeClass, isEscapeKey};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {addClass, removeClass, isEscapeKey, debounce};
