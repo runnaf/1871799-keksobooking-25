@@ -1,9 +1,12 @@
 import './validator-form.js';
 import './map.js';
 import './get-slider-element.js';
-import {renderSimilarPopap, setTypeClick, setRoomsClick, setGuestsClick, setFeaturesClick, setPriceClick} from './map.js';
 import { setUserFormSubmit } from './submiting-form.js';
 import './reset-form.js';
+import './avatar.js';
+import './photos-of-housing.js';
+import {getData} from './data.js';
+/*
 import {getErrorMessage} from './get-message.js';
 import {debounce} from './util.js';
 const RERENDER_DELAY = 500;
@@ -35,7 +38,8 @@ fetch('https://25.javascript.pages.academy/keksobooking/data')
   })
   .catch(() => getErrorMessage()
   );
-
+*/
+getData();
 
 setUserFormSubmit();
 
