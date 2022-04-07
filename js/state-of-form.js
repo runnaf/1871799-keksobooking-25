@@ -26,6 +26,7 @@ function deactivateForm() {
     });
   });
 }
+
 deactivateForm();
 
 export {activateForm, deactivateForm};
