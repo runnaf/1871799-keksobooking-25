@@ -59,11 +59,11 @@ const validatorForm = () => {
 
   pristine.addValidator(titleFieldElement, validateTitle, getTitleErrorMessage);
   pristine.addValidator(priceFieldElement, validatePrice, getPriceErrorMessage);
-  const onTypeOfHousChange = () => {
+  formElement.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeOfHousChange));
+  function onTypeOfHousChange () {
     priceFieldElement.placeholder = minPrice[this.value];
     pristine.validate(priceFieldElement);
-  };
-  formElement.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeOfHousChange));
+  }
   pristine.addValidator(numberOfRoomsField, validateRooms, getRoomsErrorMessage);
   pristine.addValidator(numberOfCapacityField, validateRooms, getRoomsErrorMessage);
   const isValid = pristine.validate();
