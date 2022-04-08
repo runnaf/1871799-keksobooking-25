@@ -1,4 +1,4 @@
-import {mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, removePopup} from './map.js';
+import {mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, removePopup, ZOOM} from './map.js';
 import {getInitialValueSlider} from './get-slider-element.js';
 import {getData} from './data.js';
 
@@ -34,7 +34,7 @@ const clearForm = () => {
   map.setView({
     lat: LAT_TOKIO,
     lng: LNG_TOKIO,
-  }, 13);
+  }, ZOOM);
   mainPinMarker.setLatLng([LAT_TOKIO, LNG_TOKIO]);
   formElement.querySelector('textarea').value = '';
   getInitialValueSlider();
@@ -62,4 +62,5 @@ const clearForm = () => {
   });
   getData();
 };
+
 export {clearForm};

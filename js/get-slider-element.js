@@ -3,6 +3,7 @@ const valueElement = document.querySelector('#price');
 const MAX_VALUE_PRICE = 100000;
 const initialValueSlider = 5000;
 valueElement.value = 5000;
+
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,

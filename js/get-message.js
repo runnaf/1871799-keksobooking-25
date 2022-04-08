@@ -1,5 +1,13 @@
 import {isEscapeKey} from './util.js';
 
+const successMessage = document.querySelector('#success').content.querySelector('div');
+const errorMessage = document.querySelector('#error').content.querySelector('div');
+
+const messages = {
+  success: successMessage,
+  failure: errorMessage
+};
+
 const getErrorMessage = () => {
   const messageError = document.createElement('div');
   messageError.classList.add('error-network');
@@ -28,17 +36,9 @@ const addEventKeydown = () => {
   });
 };
 
-const successMessage = document.querySelector('#success').content.querySelector('div');
-const errorMessage = document.querySelector('#error').content.querySelector('div');
-
-const messages = {
-  success: successMessage,
-  failure: errorMessage
-};
-
-function addMessage (message) {
+const addMessage = (message) => {
   document.body.appendChild(message);
-}
+};
 
 export {messages, addMessage, addEventHandlers, addEventKeydown, getErrorMessage};
 
