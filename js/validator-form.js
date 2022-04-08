@@ -22,20 +22,16 @@ const roomsOption = {
   '100': ['0'],
 };
 
-function validateTitle (value) {
-  return value.length >= MIN_VALUE_TITLE && value.length <= MAX_VALUE_TITLE;
-}
+const validateTitle = (value) => value.length >= MIN_VALUE_TITLE && value.length <= MAX_VALUE_TITLE;
 
-function getTitleErrorMessage () {
-  return 'от 30 до 100 символов';
-}
+const getTitleErrorMessage = () => 'от 30 до 100 символов';
 
-function validatePrice (price) {
+const validatePrice = (price) => {
   const typeOfHouseField = formElement.querySelector('[name="type"]');
   return price <= MAX_VALUE_PRICE && price >= minPrice[typeOfHouseField.value];
-}
+};
 
-function getPriceErrorMessage (price) {
+const getPriceErrorMessage = (price) => {
   if (price < MAX_VALUE_PRICE) {
     const typeOfHouseField = formElement.querySelector('[name="type"]');
 
@@ -43,19 +39,17 @@ function getPriceErrorMessage (price) {
   } else {
     return `Минимальная цена за ночь должна быть меньше ${MAX_VALUE_PRICE}`;
   }
-}
+};
 
-function validateRooms () {
-  return roomsOption[numberOfRoomsField.value].includes(numberOfCapacityField.value);
-}
+const validateRooms = () => roomsOption[numberOfRoomsField.value].includes(numberOfCapacityField.value);
 
-function getRoomsErrorMessage () {
+const getRoomsErrorMessage = () =>{
   if (numberOfRoomsField.value === '100' || numberOfCapacityField.value === '0') {
     return '100 комнат не для гостей';
   } return 'количество комнат не должно превышать количество гостей';
-}
+};
 
-function validatorForm () {
+const validatorForm = () => {
   const pristine = new Pristine(formElement, {
     classTo: 'ad-form__element',
     errorTextParent: 'ad-form__element',
@@ -66,15 +60,15 @@ function validatorForm () {
   pristine.addValidator(titleFieldElement, validateTitle, getTitleErrorMessage);
   pristine.addValidator(priceFieldElement, validatePrice, getPriceErrorMessage);
   formElement.querySelectorAll('[name="type"]').forEach((item) => item.addEventListener('change', onTypeOfHousChange));
-  function onTypeOfHousChange () {
+  const onTypeOfHousChange = () => {
     priceFieldElement.placeholder = minPrice[this.value];
     pristine.validate(priceFieldElement);
-  }
+  };
   pristine.addValidator(numberOfRoomsField, validateRooms, getRoomsErrorMessage);
   pristine.addValidator(numberOfCapacityField, validateRooms, getRoomsErrorMessage);
   const isValid = pristine.validate();
   return isValid;
-}
+};
 
 timeInElement.addEventListener('change', () => {
   timeOutElement.value = timeInElement.value;

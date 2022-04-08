@@ -5,7 +5,7 @@ const elementClassDisabled = [
   'map__filters',
 ];
 
-function activateForm() {
+const activateForm = () =>{
   elementClassDisabled.forEach((className) => {
     const foundElement = document.querySelector(`.${className}`);
 
@@ -14,9 +14,9 @@ function activateForm() {
       Element.removeAttribute('disabled');
     });
   });
-}
+};
 
-function deactivateForm() {
+const deactivateForm = () =>{
   elementClassDisabled.forEach((className) => {
     const foundElement = document.querySelector(`.${className}`);
 
@@ -25,7 +25,7 @@ function deactivateForm() {
       Element.setAttribute('disabled', false);
     });
   });
-}
+};
 
 deactivateForm();
 

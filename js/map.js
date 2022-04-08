@@ -172,4 +172,4 @@ mainPinMarker.on('moveend', (evt) => {
   addressOfMainPinMarker.value = (`${(evt.target.getLatLng().lat).toFixed(FLOAT_ADDRESS)}, ${(evt.target.getLatLng().lng).toFixed(FLOAT_ADDRESS)}`);
 });
 
-export {renderSimilarPopap, removeMarkers, mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, setTypeClick, setPriceClick, removePopup, setRoomsClick, setGuestsClick, setFeaturesClick};
+export {renderSimilarPopap, removeMarkers, mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, ZOOM, setTypeClick, setPriceClick, removePopup, setRoomsClick, setGuestsClick, setFeaturesClick};
