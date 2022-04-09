@@ -1,12 +1,7 @@
 import {isEscapeKey} from './util.js';
 
-const successMessage = document.querySelector('#success').content.querySelector('div');
-const errorMessage = document.querySelector('#error').content.querySelector('div');
+const SET_TIME = 3000;
 
-const messages = {
-  success: successMessage,
-  failure: errorMessage
-};
 
 const getErrorMessage = () => {
   const messageError = document.createElement('div');
@@ -15,30 +10,34 @@ const getErrorMessage = () => {
   document.body.appendChild(messageError);
   setTimeout(() => {
     messageError.remove();
-  }, 3000);
+  }, SET_TIME);
 };
 
-const addEventHandlers = () => {
+const onPopupEscKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closePopup();
+  }
+};
+
+function closePopup () {
   const message = document.querySelector('.message');
+  message.remove();
+  document.removeEventListener('keydown', onPopupEscKeydown);
+}
 
-  message.addEventListener('click', () => {
-    message.remove();
-  });
-};
+function addEventHandlers () {
+  const message = document.querySelector('.message');
+  message.addEventListener('click', closePopup);
+}
 
 const addEventKeydown = () => {
-  const message = document.querySelector('.message');
-  window.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      message.remove();
-    }
-  });
+  document.addEventListener('keydown', onPopupEscKeydown);
 };
 
-const addMessage = (message) => {
-  document.body.appendChild(message);
+const addMessage = (msg) => {
+  document.body.appendChild(msg);
 };
 
-export {messages, addMessage, addEventHandlers, addEventKeydown, getErrorMessage};
+export {addMessage, addEventHandlers, addEventKeydown, getErrorMessage};
 

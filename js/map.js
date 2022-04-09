@@ -1,6 +1,15 @@
 import {getSimilarElements} from './generating-similar-elements.js';
 import {activateForm} from './state-of-form.js';
 
+const ICON_SIZE_X = 40;
+const ICON_SIZE_Y = 40;
+const ICON_ANCHOR_X = 20;
+const ICON_ANCHOR_Y = 40;
+const MAIN_PIN_ICON_SIZE_X = 52;
+const MAIN_PIN_ICON_SIZE_Y = 52;
+const MAIN_PIN_ANCHOR_X = 26;
+const MAIN_PIN_ANCHOR_Y = 52;
+const DEFAULT_VALUE_FIELD = 'any';
 const FLOAT_ADDRESS = 5;
 const LAT_TOKIO = 35.68173;
 const LNG_TOKIO = 139.75393;
@@ -27,9 +36,6 @@ const pricesByValues = {
 };
 
 const map = L.map('map-canvas')
-  .on('load', () => {
-    activateForm();
-  })
   .setView({
     lat: LAT_TOKIO,
     lng: LNG_TOKIO,
@@ -44,11 +50,11 @@ L.tileLayer(
 
 const icon = L.icon({
   iconUrl: './img/pin.svg',
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconSize: [ICON_SIZE_X, ICON_SIZE_Y],
+  iconAnchor: [ICON_ANCHOR_X, ICON_ANCHOR_Y],
 });
 
-const filterArray = ({offer}) => {
+const filteringArray = ({offer}) => {
 
   const housingFeature = () => {
     const filtersFeatures = [];
@@ -60,17 +66,21 @@ const filterArray = ({offer}) => {
     return false;
   };
 
-  const housingPriceCont = (housingPrice.value === 'any') ? true : (offer.price >= pricesByValues[housingPrice.value].min && offer.price <= pricesByValues[housingPrice.value].max);
-  const housingTypeCond = (housingType.value === 'any') ? true : (offer.type === (housingType.value));
-  const housingGuestsCond = (housingGuests.value === 'any') ? true : (offer.guests === Number(housingGuests.value));
-  const housingRoomsCond = (housingRooms.value === 'any') ? true : (offer.rooms === Number(housingRooms.value));
+  const housingPriceCont = (housingPrice.value ===  DEFAULT_VALUE_FIELD) ? true : (offer.price >= pricesByValues[housingPrice.value].min && offer.price <= pricesByValues[housingPrice.value].max);
+  const housingTypeCond = (housingType.value ===  DEFAULT_VALUE_FIELD) ? true : (offer.type === (housingType.value));
+  const housingGuestsCond = (housingGuests.value ===  DEFAULT_VALUE_FIELD) ? true : (offer.guests === Number(housingGuests.value));
+  const housingRoomsCond = (housingRooms.value ===  DEFAULT_VALUE_FIELD) ? true : (offer.rooms === Number(housingRooms.value));
 
   return (housingTypeCond && housingGuestsCond && housingRoomsCond && housingPriceCont && housingFeature());
 };
 
+let markerGroup;
+
 const renderSimilarPopap = (offerElements) => {
+  markerGroup = L.layerGroup().addTo(map);
+
   offerElements
-    .filter(filterArray)
+    .filter(filteringArray)
     .slice(0, SIMILAR_ADS)
     .forEach((element) => {
       const marker = L.marker(
@@ -81,10 +91,12 @@ const renderSimilarPopap = (offerElements) => {
       );
 
       marker
-        .addTo(map)
+        .addTo(markerGroup)
         .bindPopup(getSimilarElements(element));
     });
+  activateForm();
 };
+
 const removePopup = () => {
   const popups = Array.from(document.querySelectorAll('.leaflet-popup-pane'));
   popups.forEach((popup) => {
@@ -100,56 +112,39 @@ const removeMarkers = () => {
   });
 };
 
-const setTypeClick = (cd) => {
-  housingType.addEventListener('change', () => {
-    removePopup();
-    removeMarkers();
-    cd();
+const searchResults = (fieldName, functionName) => {
+  fieldName.addEventListener('change', () => {
+    markerGroup.clearLayers();
+    functionName();
   });
+};
+
+const setTypeClick = (cd) => {
+  searchResults(housingType, cd);
 };
 
 const setRoomsClick = (cd) => {
-  housingRooms.addEventListener('change', () => {
-    removePopup();
-    removeMarkers();
-    cd();
-  });
+  searchResults(housingRooms, cd);
 };
 
 const setGuestsClick = (cd) => {
-  housingGuests.addEventListener('change', () => {
-    removePopup();
-    removeMarkers();
-    cd();
-  });
+  searchResults(housingGuests, cd);
 };
 
 const setFeaturesClick = (cd) => {
   housingFeaturesArray.forEach((featureElement) => {
-    featureElement.addEventListener('change', () => {
-      removePopup();
-      removeMarkers();
-      cd();
-    });
+    searchResults(featureElement, cd);
   });
 };
 
 const setPriceClick = (cd) => {
-  housingPrice.addEventListener('change', () => {
-    removePopup();
-    removeMarkers();
-    cd();
-  });
+  searchResults(housingPrice, cd);
 };
-
-const markerGroup = L.layerGroup().addTo(map);
-
-markerGroup.clearLayers();
 
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
+  iconSize: [MAIN_PIN_ICON_SIZE_X, MAIN_PIN_ICON_SIZE_Y],
+  iconAnchor: [MAIN_PIN_ANCHOR_X, MAIN_PIN_ANCHOR_Y],
 });
 
 const mainPinMarker = L.marker(
@@ -171,5 +166,6 @@ addressOfMainPinMarker.value = (`${mainPinMarker._latlng.lat  },${  mainPinMarke
 mainPinMarker.on('moveend', (evt) => {
   addressOfMainPinMarker.value = (`${(evt.target.getLatLng().lat).toFixed(FLOAT_ADDRESS)}, ${(evt.target.getLatLng().lng).toFixed(FLOAT_ADDRESS)}`);
 });
+
 
 export {renderSimilarPopap, removeMarkers, mainPinMarker, LAT_TOKIO, LNG_TOKIO, map, ZOOM, setTypeClick, setPriceClick, removePopup, setRoomsClick, setGuestsClick, setFeaturesClick};

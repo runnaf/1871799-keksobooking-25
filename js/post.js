@@ -1,5 +1,6 @@
+const formSubmit = document.querySelector('.ad-form__submit');
 const postData = async (url, data) => {
-  document.querySelector('.ad-form__submit').disabled = true;
+  formSubmit.disabled = true;
   const response = await fetch(
     url,
     {
@@ -10,5 +11,5 @@ const postData = async (url, data) => {
   return await response;
 };
 
-export {postData};
+export {postData, formSubmit};
 
