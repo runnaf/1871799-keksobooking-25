@@ -1,3 +1,4 @@
+const ESCAPE = 'Escape';
 const addClass = (element, classToAdd) => {
   const className = element.classList.add(classToAdd);
   return className;
@@ -8,14 +9,6 @@ const removeClass = (element, classToRemove) => {
   return classRemove;
 };
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
+const isEscapeKey = (evt) => evt.key === ESCAPE;
 
-const debounce = (callback, timeoutDelay) => {
-  let timeoutId;
-  return (...rest) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
-  };
-};
-
-export {addClass, removeClass, isEscapeKey, debounce};
+export {addClass, removeClass, isEscapeKey};

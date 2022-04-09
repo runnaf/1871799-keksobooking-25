@@ -1,15 +1,21 @@
 import { clearForm } from './clear-form.js';
-import { validatorForm} from './validator-form.js';
-import { messages, addMessage, addEventHandlers, addEventKeydown } from './get-message.js';
-import { postData } from './post.js';
+import { pristine, validationForm} from './validator-form.js';
+import { addMessage, addEventHandlers, addEventKeydown } from './get-message.js';
+import { postData, formSubmit } from './post.js';
 
 const form = document.querySelector('.ad-form');
+const successMessage = document.querySelector('#success').content.querySelector('div');
+const errorMessage = document.querySelector('#error').content.querySelector('div');
+const messages = {
+  success: successMessage,
+  failure: errorMessage
+};
 
 const setUserFormSubmit = () => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
-    if (validatorForm ()) {
+    if (validationForm ()) {
       const formData = new FormData(evt.target);
 
       postData('https://25.javascript.pages.academy/keksobooking/', formData)
@@ -17,10 +23,10 @@ const setUserFormSubmit = () => {
           if (response.ok) {
             addMessage(messages.success);
             clearForm();
-            form.querySelector('.ad-form__submit').disabled = false;
+            formSubmit.disabled = false;
             return response.json();
           } else {
-            form.querySelector('.ad-form__submit').disabled = false;
+            formSubmit.disabled = false;
           }
 
           throw new Error (`${response.status} ${response.statusText}`);
@@ -31,10 +37,11 @@ const setUserFormSubmit = () => {
         .finally(() => {
           addEventHandlers();
           addEventKeydown();
+          pristine.reset();
         });
     }
   });
-  validatorForm();
+  validationForm();
 };
 
 

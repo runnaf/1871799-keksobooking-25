@@ -26,7 +26,7 @@ const getSimilarElements = ({author, offer}) => {
   const offerElementPhoto = offerElement.querySelector('.popup__photos');
   const offerElementAvatar = offerElement.querySelector('.popup__avatar');
   const hideElement = (element) => {addClass(element, 'hidden');};
-  const addValue = (element, value) => {element.innerHTML = value;};
+  const addValue = (element, value) => {element.textContent = value;};
 
   if (offer.title) {
     addValue(offerElementTitle, offer.title);

@@ -1,4 +1,4 @@
-import {removeClass, addClass} from './util.js';
+import {addClass, removeClass} from './util.js';
 
 const elementClassDisabled = [
   'ad-form',
@@ -10,8 +10,8 @@ const activateForm = () =>{
     const foundElement = document.querySelector(`.${className}`);
 
     removeClass(foundElement, `${className}--disabled`);
-    foundElement.querySelectorAll('fieldset').forEach((Element) => {
-      Element.removeAttribute('disabled');
+    foundElement.querySelectorAll('.fieldset').forEach((Element) => {
+      Element.removeAttribute.disabled = true;
     });
   });
 };
@@ -21,12 +21,12 @@ const deactivateForm = () =>{
     const foundElement = document.querySelector(`.${className}`);
 
     addClass(foundElement, `${className}--disabled`);
-    foundElement.querySelectorAll('fieldset').forEach((Element) => {
-      Element.setAttribute('disabled', false);
+    foundElement.querySelectorAll('.fieldset').forEach((Element) => {
+      Element.setAttribute.disabled = false;
     });
   });
 };
 
 deactivateForm();
 
-export {activateForm, deactivateForm};
+export {deactivateForm, activateForm};
